@@ -53,5 +53,42 @@ public class Time {
 	public void setFin(Date fin) {
 		this.fin = fin;
 	}
+
+	@Override
+	public String toString() {
+		return "Time [comienzo=" + comienzo + ", fin=" + fin + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((comienzo == null) ? 0 : comienzo.hashCode());
+		result = prime * result + ((fin == null) ? 0 : fin.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Time other = (Time) obj;
+		if (comienzo == null) {
+			if (other.comienzo != null)
+				return false;
+		} else if (!comienzo.equals(other.comienzo))
+			return false;
+		if (fin == null) {
+			if (other.fin != null)
+				return false;
+		} else if (!fin.equals(other.fin))
+			return false;
+		return true;
+	}
 	
 }
