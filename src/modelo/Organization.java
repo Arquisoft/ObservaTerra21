@@ -6,6 +6,12 @@ public class Organization {
 	
 	private int id;
 	private String nombre;
+
+    public Organization(){
+
+    }
+
+
 	private List<Organization> organizaciones;
 	public Organization(int id, String nombre, List<Organization> organizaciones) {
 		super();

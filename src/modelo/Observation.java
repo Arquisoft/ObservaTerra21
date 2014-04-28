@@ -10,6 +10,10 @@ public class Observation {
 	private Measure measure;
 	private Time time;
 	private Organization provider;
+
+    public Observation(){
+
+    }
 	
 	
 	public Observation(int id, Area area, Indicator indicator, Measure measure,

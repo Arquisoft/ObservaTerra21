@@ -9,7 +9,10 @@ public class User {
 	private String nombre;
 	private String apellidos;
 	private Organization organizacion;
-	
+
+    public User(){
+
+    }
 	
 	public User(int id, String usuario, String password, String mail,
 			String nombre, String apellidos, Organization organizacion) {

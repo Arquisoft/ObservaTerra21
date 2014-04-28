@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Area {
@@ -14,7 +15,10 @@ public class Area {
 		this.nombre = nombre;
 		this.areas = areas;
 	}
-	
+
+    public Area(){
+
+    }
 	
 	
 	public Area(int id, String nombre, List<Area> areas) {
@@ -41,5 +45,12 @@ public class Area {
 	public void setAreas(List<Area> areas) {
 		this.areas = areas;
 	}
+
+    public void addArea(Area area){
+        if(this.areas == null){
+            this.areas = new ArrayList<Area>();
+        }
+        this.areas .add(area);
+    }
 
 }

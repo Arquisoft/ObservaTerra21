@@ -6,6 +6,7 @@ public class Time {
 	
 	private Date comienzo;
 	private Date fin;
+    private Integer id;
 	
 	public Time() {
 	}
@@ -90,5 +91,12 @@ public class Time {
 			return false;
 		return true;
 	}
-	
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

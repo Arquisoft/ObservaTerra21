@@ -4,6 +4,18 @@ public class Measure {
 	
 	
 	private String medida;
+    private String unidad;
+    private Integer id;
+
+    public String getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(String unidad) {
+        this.unidad = unidad;
+    }
+
+
 	
 	public Measure()
 	{
@@ -23,4 +35,11 @@ public class Measure {
 		this.medida = medida;
 	}
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
