@@ -2,7 +2,9 @@ package services.impl;
 
 import modelo.User;
 import services.UserServices;
+import services.impl.transactions.user.CRUDUser;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,23 +20,24 @@ import java.util.List;
  * - Javier Palacio Cuenca
  */
 public class UserServicesImpl implements UserServices {
-    @Override
-    public void addUser(User user) {
 
+    @Override
+    public void addUser(User user) throws SQLException {
+        new CRUDUser().add(user);
     }
 
     @Override
-    public void removeUser(User user) {
-
+    public void removeUser(User user) throws SQLException {
+         new CRUDUser().remove(user);
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return null;
+    public List<User> getAllUsers() throws SQLException {
+        return new CRUDUser().getAll();
     }
 
     @Override
-    public User getUserByID(Integer id) {
-        return null;
+    public User getUserByID(Integer id) throws SQLException {
+        return new CRUDUser().getByID(id);
     }
 }

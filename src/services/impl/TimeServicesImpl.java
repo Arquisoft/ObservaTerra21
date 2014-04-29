@@ -2,7 +2,9 @@ package services.impl;
 
 import modelo.Time;
 import services.TimeServices;
+import services.impl.transactions.Time.CRUDTime;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -19,22 +21,22 @@ import java.util.List;
  */
 public class TimeServicesImpl implements TimeServices{
     @Override
-    public void addTime(Time time) {
-
+    public void addTime(Time time) throws SQLException {
+        new CRUDTime().add(time);
     }
 
     @Override
-    public void removeTime(Time time) {
-
+    public void removeTime(Time time) throws SQLException {
+        new CRUDTime().remove(time);
     }
 
     @Override
-    public List<Time> getAllTimeIntevals() {
-        return null;
+    public List<Time> getAllTimeIntevals() throws SQLException {
+        return  new CRUDTime().getAll();
     }
 
     @Override
-    public Time getByID(Integer id) {
-        return null;
+    public Time getByID(Integer id) throws SQLException {
+        return new CRUDTime().getByID(id);
     }
 }

@@ -2,7 +2,9 @@ package services.impl;
 
 import modelo.Organization;
 import services.OrganizationServices;
+import services.impl.transactions.Organization.CRUDOrganization;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -20,22 +22,24 @@ import java.util.List;
 public class OrganizationServicesImpl implements OrganizationServices{
 
     @Override
-    public void addOrganization(Organization organization) {
-
+    public void addOrganization(Organization organization) throws SQLException {
+        new CRUDOrganization().add(organization);
     }
 
     @Override
-    public void removeOrganization(Organization organization) {
-
+    public void removeOrganization(Organization organization) throws SQLException {
+        new CRUDOrganization().remove(organization);
     }
 
     @Override
-    public Organization getByID(Integer id) {
-        return null;
+    public Organization getByID(Integer id) throws SQLException {
+
+        return new CRUDOrganization().getByID(id);
     }
 
     @Override
-    public List<Organization> getAll() {
-        return null;
+    public List<Organization> getAll() throws SQLException {
+
+        return new CRUDOrganization().getAll();
     }
 }
