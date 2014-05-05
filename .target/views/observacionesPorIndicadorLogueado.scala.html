@@ -1,8 +1,5 @@
 @(observationPerIndicator : List[model.Observation])
 
-
-
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -30,12 +27,13 @@
     <h1 id="logo"><a href="index.html">Observaterra 2.1 <span> BY CORNER TEAM</span></a></h1>
     <nav id="nav">
         <ul>
-            <li ><a href="index.html">Principal</a></li>
-            <li ><a href="datos.html">Datos</a></li>
-            <li class="current"><a href="observaciones.html">Observaciones</a></li>
-            <li><a href="login.html" class="button special">Iniciar sesión</a></li>
-            <li><a href="registro.html" class="button special">Registrarse</a></li>
-        </ul>
+				<li class="current"><a href="perfilUsuario.html">Principal</a></li>
+				<li><a href="datosUsuario.html">Datos</a></li>
+				<li class="current"><a href="observacionesUsuario.html">Observaciones</a></li>
+				<li><a href="addArea.html">Areas</a></li>
+				<li><a href="orgadd.html">Organizaciones</a></li>
+				<li><a href="@routes.Application.logout"class="button special">Salir</a></li>
+			</ul>
     </nav>
 </header>
 

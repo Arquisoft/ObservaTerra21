@@ -1,4 +1,4 @@
-@(form: Form[Application.Obs], observations: List[model.Observation])
+@(form: Form[Application.Obs], observations: List[model.Observation], indicators : List[model.Indicator])
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -29,7 +29,7 @@
 		</h1>
 		<nav id="nav">
 			<ul>
-				<li class="current"><a href="perfilUsuario.html">Principal</a></li>
+				<li><a href="perfilUsuario.html">Principal</a></li>
 				<li><a href="datosUsuario.html">Datos</a></li>
 				<li class="current"><a href="observacionesUsuario.html">Observaciones</a></li>
 				<li><a href="addArea.html">Areas</a></li>
@@ -114,36 +114,24 @@
 		<section class="wrapper style4 container">
 			<!-- da la posibilidad de mostrar las estadísticas de un indicador en concreto -->
 			<!-- Content -->
+			 @helper.form(routes.Application.getObservationsPerIndicator){
 			<div class="content">
-				<h2>Ultimas observaciones</h2>
-				<table class="default">
-					<thead>
-						<tr>
-							<th>Area</th>
-							<th>Indicador</th>
-							<th>Medida</th>
-							<th>Unidad</th>
-							<th>Fecha</th>
-						</tr>
-					</thead>
-					
-					@for(obs <- observations){
-					
-					<tr>
-						<td>@obs.getArea().getNombre()</td>
-						<td>@obs.getIndicator().getIndicador()</td>
-						<td>@obs.getMeasure().getMedida()</td>
-						<td>@obs.getMeasure().getUnidad()</td>
-						<td>@obs.getTime().getComienzo() - @obs.getTime().getFin()</td>
-
-					</tr>
-					}
-					
-				</table>
+				<h2>Ver detalles de un indicador</h2>
+				<header>
+                    <h3>Seleccione un indicador</h3>
+                </header>
+                
+                <select name="indicator">
+                	@for(indicator <- indicators){
+                		<option value="@indicator.getId()">@indicator.getIndicador()</option>
+                	}
+                </select>
+                
+                <button type="submit" class="button special">Ver observaciones</button>
 
 
 			</div>
-
+			}
 		</section>
 
 
@@ -151,7 +139,7 @@
 
 			<!-- Content -->
 			<div class="content">
-				<h2>Ultimas observaciones</h2>
+				<h2>Observaciones</h2>
 				<table class="default">
 					<thead>
 						<tr>
@@ -181,6 +169,8 @@
 			</div>
 
 		</section>
+
+	
 
 
 	</article>
