@@ -1,0 +1,105 @@
+@(areas: List[model.Area], indicators: List[model.Indicator], error :
+String)
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Observaciones</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.dropotron.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/skel.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/skel-layers.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/init.js")"></script>
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/skel.css")" />
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/style.css")" />
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/style-noscript.css")" />
+<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+</head>
+<body class="no-sidebar loading">
+
+	<!-- Cabecera -->
+	<header id="header">
+		<h1 id="logo">
+			<a href="index.html">Observaterra 2.1 <span> BY CORNER
+					TEAM</span></a>
+		</h1>
+		<nav id="nav">
+			
+			<ul>
+				<li><a href="index.html">Principal</a></li>
+				<li class="current"><a href="datos.html">Datos</a></li>
+				<li><a href="observaciones.html">Observaciones</a></li>
+				<li><a href="login.html" class="button special">Iniciar
+						sesión</a></li>
+				<li><a href="registro.html" class="button special">Registrarse</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Principal-->
+	<article id="main">
+
+
+
+		<header class="special container">
+			<span class="icon fa-align-center"></span>
+			<h2>
+				Datos<strong></strong>
+			</h2>
+		</header>
+
+		<!-- One -->
+		<section class="wrapper style4 container">
+
+			@if(error != null) {
+			<center>
+				<p class="error">@error</p>
+			</center>
+
+			}
+
+
+			<!-- Content -->
+			<div class="content">
+				<section>
+					@helper.form(routes.Application.compareAreas) {
+					<form>
+						<header>
+							<h3>Elige dos areas</h3>
+						</header>
+
+						<select name="country1"> @for(area <- areas){
+							<option value="@area.getId()">@area.getNombre()</option> }
+						</select> <select name="country2"> @for(area <- areas){
+							<option value="@area.getId()">@area.getNombre()</option> }
+						</select> <select name="indicator"> @for(ind <- indicators){
+							<option value="@ind.getId()">@ind.getIndicador()</option> }
+						</select> <input type="submit" value="Comparar areas"
+							class="button special" />
+					</form>
+					}
+
+
+				</section>
+			</div>
+
+		</section>
+
+
+	</article>
+
+	<!-- Footer -->
+	<footer id="footer">
+
+		<span class="copyright">&copy; Arquitectura de Software.
+			ObservaTerra 2.1.</span>
+
+	</footer>
+
+</body>
+</html>

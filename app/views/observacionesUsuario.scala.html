@@ -1,0 +1,187 @@
+@(form: Form[Application.Obs], observations: List[model.Observation], indicators : List[model.Indicator])
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Observaciones</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+   <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.dropotron.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/skel.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/skel-layers.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/init.js")"></script>
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/skel.css")" />
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/style.css")" />
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/style-noscript.css")" />
+<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+</head>
+<body class="no-sidebar loading">
+
+	<!-- Cabecera -->
+	<header id="header">
+		<h1 id="logo">
+			<a href="index.html">Observaterra 2.1 <span> BY CORNER
+					TEAM</span></a>
+		</h1>
+		<nav id="nav">
+			<ul>
+				<li><a href="perfilUsuario.html">Principal</a></li>
+				<li><a href="datosUsuario.html">Datos</a></li>
+				<li class="current"><a href="observacionesUsuario.html">Observaciones</a></li>
+				<li><a href="addArea.html">Areas</a></li>
+				<li><a href="orgadd.html">Organizaciones</a></li>
+				<li><a href="@routes.Application.logout"class="button special">Salir</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Principal-->
+	<article id="main">
+
+		<header class="special container">
+			<span class="icon fa-align-center"></span>
+			<h2>
+				Observaciones<strong></strong>
+			</h2>
+		</header>
+
+		<!-- One -->
+		<section class="wrapper style4 container">
+
+			<!-- Content -->
+			<div class="content">
+				<h2>
+					Añadir Observacion<strong></strong>
+				</h2>
+
+				@helper.form(routes.Application.createObservation){
+				<form>
+					<div class="row half no-collapse-1">
+						<div class="6u">
+							<input type="text" name="area" placeholder="Area" value="@form("area").value" />
+						</div>
+
+						<div class="6u">
+							<input type="text" name="indicador" placeholder="Indicador"
+								value="@form("indicador").value" />
+						</div>
+						<div class="6u">
+							<input type="text" name="medida" placeholder="Medida"
+								value="@form(" medida").value" />
+						</div>
+
+
+						<div class="6u">
+							<input type="text" name="unidad" placeholder="Unidad"
+								value="@form(" unidad").value" />
+						</div>
+					</div>
+					<div class="row half no-collapse-1">
+						<div class="6u">
+							<input type="text" name="time" placeholder="Tiempo - formato dd/mm/aaaa"
+								value="@form(" time").value" />
+						</div>
+
+						<div class="6u">
+							<input type="text" name="time2" placeholder="Tiempo - formato dd/mm/aaaa"
+								value="@form(" time").value" />
+						</div>
+					</div>
+					<div class="row half">
+						<div class="12u">
+							<input type="text" name="organizacion" placeholder="Organizacion"
+								value="@form(" organizacion").value" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="12u">
+							<ul class="buttons">
+								<button type="submit" class="button special">Añadir
+									observacion</button>
+							</ul>
+						</div>
+					</div>
+				</form>
+				}
+			</div>
+
+		</section>
+
+		<section class="wrapper style4 container">
+			<!-- da la posibilidad de mostrar las estadísticas de un indicador en concreto -->
+			<!-- Content -->
+			 @helper.form(routes.Application.getObservationsPerIndicator){
+			<div class="content">
+				<h2>Ver detalles de un indicador</h2>
+				<header>
+                    <h3>Seleccione un indicador</h3>
+                </header>
+                
+                <select name="indicator">
+                	@for(indicator <- indicators){
+                		<option value="@indicator.getId()">@indicator.getIndicador()</option>
+                	}
+                </select>
+                
+                <button type="submit" class="button special">Ver observaciones</button>
+
+
+			</div>
+			}
+		</section>
+
+
+		<section class="wrapper style4 container">
+
+			<!-- Content -->
+			<div class="content">
+				<h2>Observaciones</h2>
+				<table class="default">
+					<thead>
+						<tr>
+							<th>Area</th>
+							<th>Indicador</th>
+							<th>Medida</th>
+							<th>Unidad</th>
+							<th>Fecha</th>
+						</tr>
+					</thead>
+					
+					@for(obs <- observations){
+					
+					<tr>
+						<td>@obs.getArea().getNombre()</td>
+						<td>@obs.getIndicator().getIndicador()</td>
+						<td>@obs.getMeasure().getMedida()</td>
+						<td>@obs.getMeasure().getUnidad()</td>
+						<td>@obs.getTime().getComienzo() - @obs.getTime().getFin()</td>
+
+					</tr>
+					}
+					
+				</table>
+
+
+			</div>
+
+		</section>
+
+	
+
+
+	</article>
+
+	<!-- Footer -->
+	<footer id="footer">
+
+		<span class="copyright">&copy; Arquitectura de Software.
+			ObservaTerra 2.1.</span>
+
+	</footer>
+
+</body>
+</html>

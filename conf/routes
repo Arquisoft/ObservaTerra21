@@ -1,0 +1,40 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+GET     /index.html                 controllers.Application.index()
+
+GET     /login.html                 controllers.Application.login()
+GET     /login                      controllers.Application.login()
+GET     /registro.html              controllers.Application.register()
+GET     /datos.html                 controllers.Application.datos()
+GET 	/datosUsuario.html			controllers.Application.datos()
+GET     /observaciones.html         controllers.Application.obsrv()
+GET     /perfilUsuario.html         controllers.Application.perfilUsuario()
+GET 	/addOrganization.html		controllers.Application.addOrganizacion()
+GET		/addArea.html				controllers.Application.addArea()
+GET		/observacionesUsuario.html	controllers.Application.addObservacion()
+POST	/observacionesPorIndicador	controllers.Application.getObservationsPerIndicator()
+GET 	/orgadd.html				controllers.Application.addOrganizacion()
+GET 	/datosLogin.html			controllers.Application.datos()
+
+GET		/api/observation/area1/:area1/area2/:area2/indicator/:indicator	controllers.API.getDataToGraph(area1: String, area2: String, indicator: String)
+
+
+POST    /login                      controllers.Application.validateUser()
+POST    /registro                   controllers.Application.createUser()
+POST 	/crearOrganizacion			controllers.Application.createOrganization()
+POST	/addArea					controllers.Application.createArea()
+POST	/observacionesUsuario		controllers.Application.createObservation()
+POST	/datos						controllers.Application.compareAreas()
+POST	/logout						controllers.Application.logout()
+GET 	/logout						controllers.Application.logout()
+
+
+POST	/organization/follow/:code/user/:usuario        controllers.Application.followOrg(usuario : String, code : Integer)
+POST	/organization/unfollow/:code/user/:usuario		controllers.Application.unFollowOrg(usuario : String, code: Integer )
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
